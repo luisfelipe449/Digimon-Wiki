@@ -1,5 +1,8 @@
 import React from 'react';
 import {Carousel} from 'react-bootstrap';
+import b1 from '../../assets/b1.jpg';
+import b2 from '../../assets/b2.jpg';
+import b3 from '../../assets/b3.jpg';
 
 export default function CarouselHome() {
 
@@ -9,7 +12,7 @@ export default function CarouselHome() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="holder.js/800x400?text=First slide&bg=373940"
+          src={b1}
           alt="First slide"
         />
         <Carousel.Caption>
@@ -20,7 +23,7 @@ export default function CarouselHome() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="holder.js/800x400?text=Second slide&bg=282c34"
+          src={b2}
           alt="Second slide"
         />
     
@@ -32,7 +35,7 @@ export default function CarouselHome() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="holder.js/800x400?text=Third slide&bg=20232a"
+          src={b3}
           alt="Third slide"
         />
     
