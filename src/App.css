@@ -1,5 +1,17 @@
-.navbar{
+.menu{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  padding-left: 5rem;
+}
+
+nav img{
+  width: 30%;
+}
+
+h1{
+  text-align: center;
+}
+
+footer{
+  text-align: center;
 }
