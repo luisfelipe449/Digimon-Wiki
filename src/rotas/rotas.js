@@ -1,12 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-import ChampionsPage from '../paginas/champion';
+import HomePage from '../paginas/home';
 
 const Rotas = () => (
     <BrowserRouter>
         <Routes>
-            <Route exact path='/' element={ <ChampionsPage/> } />
+            <Route exact path='/' element={ <HomePage/> } />
         </Routes>
     </BrowserRouter>
 );
