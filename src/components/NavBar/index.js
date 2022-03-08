@@ -1,34 +1,37 @@
-import React  from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../assets/Digimon_Wiki_logo.svg.png';
 
-
-
 import {Navbar,Nav,Form,FormControl,Button, Container, NavbarBrand} from 'react-bootstrap'
+import Search from '../Search/search2';
 
-function NavBar() {
+
+
+export default function NavBar() {
+
 
     return (
       <nav>
         <Navbar bg="light" expand="lg">
           <Container fluid>
-            <img src={logo} alt="logo" id="navbarLogo"/>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
+            <Nav.Link href="/"><img src={logo} alt="logo" id="navbarLogo"/></Nav.Link>
+            <Navbar.Toggle aria-controls="navbarscroll" />
+            <Navbar.Collapse id="navbarscroll">
         <NavbarBrand
           className="me-auto my-2 my-lg-0"
           style={{ maxHeight: '100px' }}
           navbarScroll
         >
-          <div class="menu">
-            <Nav.Link href="#action1">Fresh</Nav.Link>
-            <Nav.Link href="#action1">In training</Nav.Link>
-            <Nav.Link href="#action2">Rookie</Nav.Link>
-            <Nav.Link href="#action3">Champion</Nav.Link>
-            <Nav.Link href="#action3">Ultimate</Nav.Link>
-            <Nav.Link href="#action3">Mega</Nav.Link>
+          <div className="menu">
+            <Nav.Link href="fresh">Fresh</Nav.Link>
+            <Nav.Link href="intraining">In training</Nav.Link>
+            <Nav.Link href="rookies">Rookie</Nav.Link>
+            <Nav.Link href="champions">Champion</Nav.Link>
+            <Nav.Link href="ultimate">Ultimate</Nav.Link>
+            <Nav.Link href="mega">Mega</Nav.Link>
           </div>
         </NavbarBrand>
+        
         <Form className="d-flex">
           <FormControl
             type="search"
@@ -45,4 +48,3 @@ function NavBar() {
     );
 }
 
-export default NavBar;

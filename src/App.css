@@ -1,11 +1,10 @@
 .menu{
   display: flex;
   flex-direction: row;
-  padding-left: 5rem;
 }
 
 nav img{
-  width: 30%;
+  width: 17rem;
 }
 
 h1{

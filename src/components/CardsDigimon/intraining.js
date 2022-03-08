@@ -4,21 +4,16 @@ import api from "../../services/api";
 
 class CardsDigimon extends Component {
   state = {
-    digimons: [{
-
-    }],
+    digimons: [{}],
   };
 
   async componentDidMount() {
-    const digimons_api = await api.get("digimon");
-    
-    console.log(digimons_api)
+    const digimons_api = await api.get("digimon/level/intraining");
 
     this.setState({
       digimons: digimons_api.data
     });
-};
- 
+  };
 
   render() {
     
