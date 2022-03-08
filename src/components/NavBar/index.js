@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../assets/Digimon_Wiki_logo.svg.png';
 
 import {Navbar,Nav,Form,FormControl,Button, Container, NavbarBrand} from 'react-bootstrap'
-import Search from '../Search/search2';
 
 
 
