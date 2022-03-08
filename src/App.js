@@ -3,7 +3,6 @@ import "./App.css";
 
 import Rotas from "./rotas/rotas";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
 
 export default function App() {
 
@@ -13,7 +12,6 @@ export default function App() {
     <>
       <NavBar />
       <Rotas />
-      <Footer />
     </>
   );
 }
