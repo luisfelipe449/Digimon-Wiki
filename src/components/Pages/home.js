@@ -3,31 +3,36 @@ import "../App.css";
 
 import { Row, Container, Col, Card } from "react-bootstrap";
 import { arraySearch } from "../components/Search";
-import { digimons } from "../services/utils";
+import { digimons } from "../services/digimonsAll";
 
 export default function HomePage() {
-    
-  const [digimon, setDigimons] = useState(digimons)
+  const [digimon, setDigimons] = useState(digimons);
 
-  console.log(digimons)
+  console.log(digimons);
 
   const handleOnChange = async (e) => {
     let value = e.target.value;
-    if (value.length > 1) {
+    if (value.length > 0) {
       let search = await arraySearch(digimon, value);
-      setDigimons(search)
+      setDigimons(search);
     } else {
-      setDigimons(digimons)
+      setDigimons(digimons);
     }
-  }
+  };
 
   return (
     <>
       <Container fluid>
-      <Row>
-      <input type="text" name="search" id="search" placeholder="Search Filter" onChange={handleOnChange} />
-        <h1>Digimons</h1>
-        {digimon.map(card =>
+        <Row>
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Search digimon here"
+            onChange={handleOnChange}
+          />
+          <h1>Digimons</h1>
+          {digimon.map((card) => (
             <Col sm={3}>
               <Card key={card.name} style={{ width: "18rem" }}>
                 <Card.Img key={card.img} variant="top" src={card.img} />
@@ -37,7 +42,7 @@ export default function HomePage() {
                 </Card.Body>
               </Card>
             </Col>
-        )}
+          ))}
         </Row>
       </Container>
     </>

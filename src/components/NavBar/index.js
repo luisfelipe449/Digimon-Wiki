@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../assets/Digimon_Wiki_logo.svg.png';
 
-import {Navbar,Nav,Form,FormControl,Button, Container, NavbarBrand} from 'react-bootstrap'
+import {Navbar,Nav, Container, NavbarBrand} from 'react-bootstrap'
 
 
 
