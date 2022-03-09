@@ -8,7 +8,7 @@ class CardsDigimon extends Component {
   };
 
   async componentDidMount() {
-    const digimons_api = await api.get("digimon/level/mega");
+    const digimons_api = await api.get("/level/mega");
 
     this.setState({
       digimons: digimons_api.data

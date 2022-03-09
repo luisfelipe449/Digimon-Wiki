@@ -3,20 +3,20 @@ import { Card, Col } from "react-bootstrap";
 import api from "../../services/api";
 
 class CardsDigimon extends Component {
-  state = {
-    digimons: [{
-
-    }],
-  };
+ 
 
   async componentDidMount() {
-    const digimons_api = await api.get("digimon");
-    
-    console.log(digimons_api)
+    const digimons_api = await api.get("");
 
     this.setState({
       digimons: digimons_api.data
     });
+};
+
+state = {
+  digimons: [{
+
+  }],
 };
  
 

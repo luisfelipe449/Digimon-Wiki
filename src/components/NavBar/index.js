@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../assets/Digimon_Wiki_logo.svg.png';
 
@@ -7,7 +7,6 @@ import {Navbar,Nav,Form,FormControl,Button, Container, NavbarBrand} from 'react-
 
 
 export default function NavBar() {
-
 
     return (
       <nav>
@@ -30,16 +29,6 @@ export default function NavBar() {
             <Nav.Link href="mega">Mega</Nav.Link>
           </div>
         </NavbarBrand>
-        
-        <Form className="d-flex">
-          <FormControl
-            type="search"
-            placeholder="Search"
-            className="me-2"
-            aria-label="Search"
-          />
-          <Button variant="outline-success">Search</Button>
-        </Form>
             </Navbar.Collapse>
           </Container>
         </Navbar>
