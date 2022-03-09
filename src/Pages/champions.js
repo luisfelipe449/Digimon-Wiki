@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../App.css";
 
 import { Row, Container, Col, Card } from "react-bootstrap";
-import { arraySearch } from "../components/Search";
-import { digimonsChampion } from "../services/levelChampion";
+import { arraySearch } from "../components/SearchFunction";
+import { digimonsChampion } from "../Services/levelChampion";
 
 export default function ChampionsPage() {
   const [digimon, setDigimons] = useState(digimonsChampion);

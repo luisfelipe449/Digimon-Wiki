@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "../App.css";
 
 import { Row, Container, Col, Card } from "react-bootstrap";
-import { digimonsInTraining } from "../services/levelInTraining";
-import { arraySearch } from "../components/Search";
+import { digimonsUltimate } from "../Services/levelUltimate";
+import { arraySearch } from "../components/SearchFunction";
 
 export default function FreshPage() {
-  const [digimon, setDigimons] = useState(digimonsInTraining);
+  const [digimon, setDigimons] = useState(digimonsUltimate);
 
-  console.log(digimonsInTraining);
+  console.log(digimonsUltimate);
 
   const handleOnChange = async (e) => {
     let value = e.target.value;
@@ -16,7 +16,7 @@ export default function FreshPage() {
       let search = await arraySearch(digimon, value);
       setDigimons(search);
     } else {
-      setDigimons(digimonsInTraining);
+      setDigimons(digimonsUltimate);
     }
   };
 
@@ -31,7 +31,7 @@ export default function FreshPage() {
             placeholder="Search digimon here"
             onChange={handleOnChange}
           />
-          <h1>In Training</h1>
+          <h1>Ultimate</h1>
           {digimon.map((card) => (
             <Col sm={3}>
               <Card key={card.name} style={{ width: "18rem" }}>
