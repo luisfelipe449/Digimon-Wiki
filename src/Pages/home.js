@@ -41,7 +41,8 @@ export default function HomePage() {
       <Container fluid>
         <Row>
         <h1>Digimons</h1>
-          <input
+        <div className="pagination">
+          <input className="Search"
             type="text"
             name="search"
             id="search"
@@ -50,10 +51,10 @@ export default function HomePage() {
               setsearch(e.target.value);
             }}
           />
-          <div>
+          
             {Array.from(Array(pages), (item, index) => {
               return (
-                <Button
+                <Button className="button"
                   size="lg"
                   variant="outline-primary"
                   value={index}
