@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
 
 import { Row, Container, Col, Card } from "react-bootstrap";
-import { digimonsMega } from "../Services/levelMega";
-import { arraySearch } from "../components/SearchFunction";
+import { arr } from "../Services/levelMega";
 
 export default function FreshPage() {
-  const [digimon, setDigimons] = useState(digimonsMega);
-
-  console.log(digimonsMega);
-
-  const handleOnChange = async (e) => {
-    let value = e.target.value;
-    if (value.length > 0) {
-      let search = await arraySearch(digimon, value);
-      setDigimons(search);
-    } else {
-      setDigimons(digimonsMega);
+  const [search, setsearch] = useState("");
+  const [digimon, setdigimon] = useState(arr);
+  
+  useEffect(() => {
+    if (search === "") {
+      setdigimon(arr);
     }
-  };
+    if (search !== "") {
+      setdigimon(
+        arr.filter((bl) => {
+          let name = bl.name.toLowerCase();
+          console.log(search);
+          return name.includes(search.toLowerCase());
+        })
+      );
+    }
+  }, [search]);
 
   return (
     <>
@@ -29,7 +32,9 @@ export default function FreshPage() {
             name="search"
             id="search"
             placeholder="Search digimon here"
-            onChange={handleOnChange}
+            onChange={(e) => {
+              setsearch(e.target.value);
+            }}
           />
           <h1>Mega</h1>
           {digimon.map((card) => (

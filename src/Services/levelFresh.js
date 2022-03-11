@@ -1,4 +1,4 @@
-export const digimonsFresh = [
+export const arr = [
   {
     name: "Botamon",
     img: "https://digimon.shadowsmith.com/img/botamon.jpg",

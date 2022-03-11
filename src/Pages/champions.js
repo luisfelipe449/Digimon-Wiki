@@ -1,24 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
 
-import { Row, Container, Col, Card } from "react-bootstrap";
-import { arraySearch } from "../components/SearchFunction";
-import { digimonsChampion } from "../Services/levelChampion";
+import { Row, Container, Col, Card, Button } from "react-bootstrap";
+import { arr } from "../Services/levelChampion";
 
 export default function ChampionsPage() {
-  const [digimon, setDigimons] = useState(digimonsChampion);
 
-  console.log(digimonsChampion);
-
-  const handleOnChange = async (e) => {
-    let value = e.target.value;
-    if (value.length > 0) {
-      let search = await arraySearch(digimon, value);
-      setDigimons(search);
-    } else {
-      setDigimons(digimonsChampion);
+  const [search, setsearch] = useState("");
+  const [digimon, setdigimon] = useState(arr);
+  
+  useEffect(() => {
+    if (search === "") {
+      setdigimon(arr);
     }
-  };
+    if (search !== "") {
+      setdigimon(
+        arr.filter((bl) => {
+          let name = bl.name.toLowerCase();
+          console.log(search);
+          return name.includes(search.toLowerCase());
+        })
+      );
+    }
+  }, [search]);
+
+  const [itensPerPage, setItensPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const pages = Math.ceil(digimon.length / itensPerPage)
+  const startIndex = currentPage * itensPerPage;
+  const endIndex = startIndex + itensPerPage;
+  const digimons = digimon.slice(startIndex, endIndex);
 
   return (
     <>
@@ -29,10 +41,17 @@ export default function ChampionsPage() {
             name="search"
             id="search"
             placeholder="Search digimon here"
-            onChange={handleOnChange}
+            onChange={(e) => {
+              setsearch(e.target.value);
+            }}
           />
           <h1>Champion</h1>
-          {digimon.map((card) => (
+          <div>
+            {Array.from(Array(pages), (item, index) => {
+              return <Button  size="lg" variant="outline-primary" value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}>{index+1}</Button>
+            })}
+          </div>
+          {digimons.map((card) => (
             <Col sm={3}>
               <Card key={card.name} style={{ width: "18rem" }}>
                 <Card.Img key={card.img} variant="top" src={card.img} />
