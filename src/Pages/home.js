@@ -3,7 +3,7 @@ import "../App.css";
 
 import { Row, Container, Col, Card, Button } from "react-bootstrap";
 import { arr } from "../Services/digimonsAll";
-
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function HomePage() {
   const [search, setsearch] = useState("");
@@ -32,29 +32,41 @@ export default function HomePage() {
   const endIndex = startIndex + itensPerPage;
   const digimons = digimon.slice(startIndex, endIndex);
 
-  if(search === digimons){
-    setCurrentPage(0)
-  }
+  useEffect(() => {
+    if (digimon.length) {
+      setCurrentPage(0);
+    }
+  }, [digimon.length]);
+
+  const [show, setShow] = useState(false);
 
   return (
     <>
       <Container fluid>
         <Row>
-        <h1>Digimons</h1>
-        <div className="pagination">
-          <input className="Search"
-            type="text"
-            name="search"
-            id="search"
-            placeholder="Search digimon here"
-            onChange={(e) => {
-              setsearch(e.target.value);
-            }}
-          />
-          
+          <h1>Digimons</h1>
+          <div className="pagination">
+            <div className="pagination">
+              {/*Toggle search box, checks if its true or false*/}
+              
+              <Button onClick={() => setShow(prevCheck => !prevCheck)}> 
+                <SearchIcon />
+              </Button>
+              {show ? (
+                <input
+                  className="Search"
+                  type="text"
+                  id="search"
+                  onChange={(e) => {
+                    setsearch(e.target.value);
+                  }}
+                />
+              ) : null}
+            </div>
             {Array.from(Array(pages), (item, index) => {
               return (
-                <Button className="button"
+                <Button
+                  className="button"
                   size="lg"
                   variant="outline-primary"
                   value={index}
