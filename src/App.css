@@ -16,7 +16,12 @@ input{
   border-radius: 10px;
 }
 
+
 @media only screen and (max-width: 1024px) {
+
+  input{
+    max-width: 8rem;
+  }
 
   a.nav-link{
     display: block;
@@ -29,11 +34,30 @@ input{
 
   .menu{
     flex-wrap: wrap;
+    line-height: 1.3rem;
   }
 
-  button.buttonPages{
+  .btn-group-lg>.btn{
+    font-size: 1rem;
+  }
+
+  .pagination{
+    justify-content: flex-start;
+  }
+
+  .searchIcon{
+    margin-right: 8rem;
+  }
+
+  button.buttonPages:nth-child( n+4 ){
     display: none;
   }
+
+  button.buttonPages:nth-child(22){
+    display: flex;
+    align-items: center;
+  }
+
 
   button.button{
     display: none;

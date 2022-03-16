@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 
-import { Row, Container, Col, Card, Button } from "react-bootstrap";
+import { Row, Container, Col, Card, Button, Form, FormControl } from "react-bootstrap";
 import { arr } from "../Services/levelChampion";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -46,28 +46,42 @@ export default function ChampionsPage() {
         <Row>
           <h1>Champion</h1>
           <div className="pagination">
-            <div className="pagination">
-              {/*Toggle search box, checks if its true or false*/}
-              <Button onClick={() => setShow((prevCheck) => !prevCheck)}>
-                <SearchIcon />
-              </Button>
-              {show ? (
-                <input
-                  className="Search"
-                  type="text"
-                  id="search"
-                  placeholder="Search digimon here"
-                  onChange={(e) => {
-                    setsearch(e.target.value);
-                  }}
-                />
-              ) : null}
+          {/*Toggle search box, checks if its true or false*/}
+            <Button
+              className="buttonSearch"
+              onClick={() => setShow((prevCheck) => !prevCheck)}
+            >
+              <SearchIcon />
+            </Button>
+            <div className="searchbar">
+            {show ? (
+              <Form>
+              <FormControl
+                className="Search"
+                type="text"
+                id="search"
+                placeholder="Search digimon here"
+                onChange={(e) => {
+                  setsearch(e.target.value);
+                }}
+              />
+              </Form>
+            ) : null}
             </div>
+           
+            <Button
+              className="buttonPages"
+              variant="outline-primary"
+              onClick={(e) =>
+                setCurrentPage(currentPage > 0 ? currentPage - 1 : null)
+              }
+            >
+              Prev
+            </Button>
             {Array.from(Array(pages), (item, index) => {
               return (
                 <Button
-                  className="button"
-                  size="lg"
+                  className="buttonPages"
                   variant="outline-primary"
                   value={index}
                   onClick={(e) => setCurrentPage(Number(e.target.value))}
@@ -76,8 +90,18 @@ export default function ChampionsPage() {
                 </Button>
               );
             })}
+            <Button
+              className="buttonPages"
+              variant="outline-primary"
+              onClick={(e) =>
+                setCurrentPage(
+                  digimons.length < itensPerPage ? 0 : currentPage + 1
+                )
+              }
+            >
+              Next
+            </Button>
           </div>
-
           {digimons.map((card) => (
             <Col sm={3}>
               <Card key={card.name} style={{ width: "18rem" }}>
