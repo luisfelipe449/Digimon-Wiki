@@ -1,16 +1,16 @@
 const express = require('express');
 
-const { resolve } = require('path')
+const path = require('path')
 
 const app = express();
 
-app.use('/',
-express.static(
-  resolve(
-    __dirname,
-    './build'
-  )
-))
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('my-app/build'));
+}
+
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 app.listen(process.env.PORT || 3000, (err) => {
   if (err) {
