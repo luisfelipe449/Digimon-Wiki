@@ -12,12 +12,12 @@ const Rotas = () => (
   <BrowserRouter>
     <Routes>
       <Route exact path="/" element={<HomePage />} />
-      <Route path="champions" element={<ChampionsPage />} />
-      <Route path="rookies" element={<RookiePage />} />
-      <Route path="fresh" element={<FreshPage />} />
-      <Route path="intraining" element={<InTrainingPage />} />
-      <Route path="ultimate" element={<UltimatePage />} />
-      <Route path="mega" element={<MegaPage />} />
+      <Route path="/champions" element={<ChampionsPage />} />
+      <Route path="/rookies" element={<RookiePage />} />
+      <Route path="/fresh" element={<FreshPage />} />
+      <Route path="/intraining" element={<InTrainingPage />} />
+      <Route path="/ultimate" element={<UltimatePage />} />
+      <Route path="/mega" element={<MegaPage />} />
     </Routes>
   </BrowserRouter>
 );
