@@ -1,27 +1,9 @@
-const express = require('express');
+const express = require('express');const app = express();const path = require('path');const port = process.env.PORT || 3000;
 
-const path = require('path')
+//Static file declaration
+app.use(express.static(path.join(__dirname, 'client/build')));
 
-const app = express();
-
-if (process.env.NODE_ENV) {
-  app.use(express.static('client/build'));
-  const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
-
-app.get("*", (req, res) => {
-  let url = path.join(__dirname, '../client/build', 'index.html');
-  if (!url.startsWith('/app/')) // since we're on local windows
-    url = url.substring(1);
-  res.sendFile(url);
-});
-
-app.listen(process.env.PORT || 3000, (err) => {
-  if (err) {
-    return console.log(err);
-  }
-  console.log("tudo funcionando certinho");
-});
+//production mode
+if(process.env.NODE_ENV === 'production') {  app.use(express.static(path.join(__dirname, 'client/build')));  
+app.get('*', (req, res) => {  res.sendFile(path.join(__dirname+'/client/public/index.html'));})
+app.listen(port, (req, res) => {  console.log( `server listening on port: ${port}`);})}
