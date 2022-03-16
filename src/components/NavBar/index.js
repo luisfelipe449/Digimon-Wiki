@@ -22,7 +22,6 @@ export default function NavBar(props) {
             <NavbarBrand
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: "100px" }}
-              navbarScroll
             >
               <div className="menu">
                 <Nav.Link href="fresh">Fresh</Nav.Link>

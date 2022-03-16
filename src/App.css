@@ -11,8 +11,36 @@ h1{
   text-align: center;
 }
 
-.pagination{
-  display: flex;
-  justify-content: flex-start;
+
+input{
+  border-radius: 10px;
 }
 
+@media only screen and (max-width: 1024px) {
+
+  a.nav-link{
+    display: block;
+    margin: 0 auto;
+  }
+
+  .navbar-toggler{
+    margin: 0 auto;
+  }
+
+  .menu{
+    flex-wrap: wrap;
+  }
+
+  button.buttonPages{
+    display: none;
+  }
+
+  button.button{
+    display: none;
+  }
+
+  .card-mobile{
+    display: flex;
+    justify-content: center;
+  }
+}

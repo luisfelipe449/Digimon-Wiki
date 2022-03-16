@@ -5,12 +5,10 @@ import { Row, Container, Col, Card, Button } from "react-bootstrap";
 import { arr } from "../Services/levelChampion";
 import SearchIcon from "@mui/icons-material/Search";
 
-
 export default function ChampionsPage() {
-
   const [search, setsearch] = useState("");
   const [digimon, setdigimon] = useState(arr);
-  
+
   useEffect(() => {
     if (search === "") {
       setdigimon(arr);
@@ -29,18 +27,18 @@ export default function ChampionsPage() {
   const [itensPerPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const pages = Math.ceil(digimon.length / itensPerPage)
+  const pages = Math.ceil(digimon.length / itensPerPage);
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const digimons = digimon.slice(startIndex, endIndex);
 
   useEffect(() => {
     if (digimon.length) {
-      setCurrentPage(0)
+      setCurrentPage(0);
     }
-   }, [digimon.length]);
+  }, [digimon.length]);
 
-   const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
   return (
     <>
@@ -50,7 +48,7 @@ export default function ChampionsPage() {
           <div className="pagination">
             <div className="pagination">
               {/*Toggle search box, checks if its true or false*/}
-              <Button onClick={() => setShow(prevCheck => !prevCheck)}> 
+              <Button onClick={() => setShow((prevCheck) => !prevCheck)}>
                 <SearchIcon />
               </Button>
               {show ? (
@@ -66,10 +64,20 @@ export default function ChampionsPage() {
               ) : null}
             </div>
             {Array.from(Array(pages), (item, index) => {
-              return <Button  size="lg" variant="outline-primary" value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}>{index+1}</Button>
+              return (
+                <Button
+                  className="button"
+                  size="lg"
+                  variant="outline-primary"
+                  value={index}
+                  onClick={(e) => setCurrentPage(Number(e.target.value))}
+                >
+                  {index + 1}
+                </Button>
+              );
             })}
           </div>
-       
+
           {digimons.map((card) => (
             <Col sm={3}>
               <Card key={card.name} style={{ width: "18rem" }}>

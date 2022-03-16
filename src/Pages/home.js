@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 
-import { Row, Container, Col, Card, Button } from "react-bootstrap";
+import {
+  Row,
+  Container,
+  Col,
+  Card,
+  Button,
+} from "react-bootstrap";
 import { arr } from "../Services/digimonsAll";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -48,8 +54,11 @@ export default function HomePage() {
           <div className="pagination">
             <div className="pagination">
               {/*Toggle search box, checks if its true or false*/}
-              
-              <Button onClick={() => setShow(prevCheck => !prevCheck)}> 
+
+              <Button
+                className="buttonSearch"
+                onClick={() => setShow((prevCheck) => !prevCheck)}
+              >
                 <SearchIcon />
               </Button>
               {show ? (
@@ -57,6 +66,7 @@ export default function HomePage() {
                   className="Search"
                   type="text"
                   id="search"
+                  placeholder="Search digimon here"
                   onChange={(e) => {
                     setsearch(e.target.value);
                   }}
@@ -66,7 +76,7 @@ export default function HomePage() {
             {Array.from(Array(pages), (item, index) => {
               return (
                 <Button
-                  className="button"
+                  className="buttonPages"
                   size="lg"
                   variant="outline-primary"
                   value={index}
@@ -77,8 +87,9 @@ export default function HomePage() {
               );
             })}
           </div>
+
           {digimons.map((card) => (
-            <Col sm={3}>
+            <Col className="card-mobile" sm={3}>
               <Card key={card.name} style={{ width: "18rem" }}>
                 <Card.Img key={card.img} variant="top" src={card.img} />
                 <Card.Body>
