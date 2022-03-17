@@ -64,7 +64,7 @@ export default function HomePage() {
               <SearchIcon />
             </Button>
             <div className="searchbar">
-              {show ? (
+              
                 <Form>
                   <FormControl
                     className="Search"
@@ -76,7 +76,7 @@ export default function HomePage() {
                     }}
                   />
                 </Form>
-              ) : null}
+              
             </div>
 
             {pages < 2 ? null : (
@@ -102,15 +102,17 @@ export default function HomePage() {
                 </Button>
               );
             })}
-            <Button
-              className="buttonPages"
-              variant="outline-primary"
-              onClick={(e) =>
-                setCurrentPage(isLastPage ? currentPage : currentPage + 1)
-              }
-            >
-              Next
-            </Button>
+             {pages < 2 ? null : (
+              <Button
+                className="buttonPages"
+                variant="outline-primary"
+                onClick={(e) =>
+                  setCurrentPage(isLastPage ? currentPage : currentPage + 1)
+                }
+              >
+                Next
+              </Button>
+            )}
           </div>
           {digimons.map((card) => (
             <Col className="card-mobile" sm={3}>

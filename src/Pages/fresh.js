@@ -76,6 +76,8 @@ export default function FreshPage() {
                     }}
                   />
                 </Form>
+                ||
+                setsearch(search)
               ) : null}
             </div>
 
