@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 
-import { Row, Container, Col, Card, Button, Form, FormControl } from "react-bootstrap";
+import {
+  Row,
+  Container,
+  Col,
+  Card,
+  Button,
+  Form,
+  FormControl,
+} from "react-bootstrap";
 import { arr } from "../Services/levelFresh";
 import SearchIcon from "@mui/icons-material/Search";
 
-
-
 export default function FreshPage() {
-
   const [search, setsearch] = useState("");
   const [digimon, setdigimon] = useState(arr);
-  
+
   useEffect(() => {
     if (search === "") {
       setdigimon(arr);
@@ -30,26 +35,28 @@ export default function FreshPage() {
   const [itensPerPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const pages = Math.ceil(digimon.length / itensPerPage)
+  const pages = Math.ceil(digimon.length / itensPerPage);
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const digimons = digimon.slice(startIndex, endIndex);
+  const isLastPage =
+    digimons.length !== itensPerPage || endIndex === digimon.length;
 
   useEffect(() => {
     if (digimon.length) {
-      setCurrentPage(0)
+      setCurrentPage(0);
     }
-   }, [digimon.length]);
+  }, [digimon.length]);
 
-   const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-   return (
-     <>
-       <Container fluid>
-         <Row>
-           <h1>Fresh</h1>
-           <div className="pagination">
-          {/*Toggle search box, checks if its true or false*/}
+  return (
+    <>
+      <Container fluid>
+        <Row>
+          <h1>Fresh</h1>
+          <div className="pagination">
+            {/*Toggle search box, checks if its true or false*/}
             <Button
               className="buttonSearch"
               onClick={() => setShow((prevCheck) => !prevCheck)}
@@ -57,30 +64,32 @@ export default function FreshPage() {
               <SearchIcon />
             </Button>
             <div className="searchbar">
-            {show ? (
-              <Form>
-              <FormControl
-                className="Search"
-                type="text"
-                id="search"
-                placeholder="Search digimon here"
-                onChange={(e) => {
-                  setsearch(e.target.value);
-                }}
-              />
-              </Form>
-            ) : null}
+              {show ? (
+                <Form>
+                  <FormControl
+                    className="Search"
+                    type="text"
+                    id="search"
+                    placeholder="Search digimon here"
+                    onChange={(e) => {
+                      setsearch(e.target.value);
+                    }}
+                  />
+                </Form>
+              ) : null}
             </div>
-           
-            <Button
-              className="buttonPages"
-              variant="outline-primary"
-              onClick={(e) =>
-                setCurrentPage(currentPage > 0 ? currentPage - 1 : null)
-              }
-            >
-              Prev
-            </Button>
+
+            {pages < 2 ? null : (
+              <Button
+                className="buttonPages"
+                variant="outline-primary"
+                onClick={(e) =>
+                  setCurrentPage(currentPage > 0 ? currentPage - 1 : null)
+                }
+              >
+                Prev
+              </Button>
+            )}
             {Array.from(Array(pages), (item, index) => {
               return (
                 <Button
@@ -93,19 +102,19 @@ export default function FreshPage() {
                 </Button>
               );
             })}
-            <Button
-              className="buttonPages"
-              variant="outline-primary"
-              onClick={(e) =>
-                setCurrentPage(
-                  digimons.length < itensPerPage ? 0 : currentPage + 1
-                )
-              }
-            >
-              Next
-            </Button>
+            {pages < 2 ? null : (
+              <Button
+                className="buttonPages"
+                variant="outline-primary"
+                onClick={(e) =>
+                  setCurrentPage(isLastPage ? currentPage : currentPage + 1)
+                }
+              >
+                Next
+              </Button>
+            )}
           </div>
-         
+
           {digimons.map((card) => (
             <Col sm={3}>
               <Card key={card.name} style={{ width: "18rem" }}>

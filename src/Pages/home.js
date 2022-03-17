@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 
-import { Row, Container, Col, Card, Button, Form, FormControl } from "react-bootstrap";
+import {
+  Row,
+  Container,
+  Col,
+  Card,
+  Button,
+  Form,
+  FormControl,
+} from "react-bootstrap";
 import { arr } from "../Services/digimonsAll";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -31,6 +39,8 @@ export default function HomePage() {
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const digimons = digimon.slice(startIndex, endIndex);
+  const isLastPage =
+    digimons.length !== itensPerPage || endIndex === digimon.length;
 
   useEffect(() => {
     if (digimon.length) {
@@ -46,7 +56,7 @@ export default function HomePage() {
         <Row>
           <h1>Digimons</h1>
           <div className="pagination">
-          {/*Toggle search box, checks if its true or false*/}
+            {/*Toggle search box, checks if its true or false*/}
             <Button
               className="buttonSearch"
               onClick={() => setShow((prevCheck) => !prevCheck)}
@@ -54,30 +64,32 @@ export default function HomePage() {
               <SearchIcon />
             </Button>
             <div className="searchbar">
-            {show ? (
-              <Form>
-              <FormControl
-                className="Search"
-                type="text"
-                id="search"
-                placeholder="Search digimon here"
-                onChange={(e) => {
-                  setsearch(e.target.value);
-                }}
-              />
-              </Form>
-            ) : null}
+              {show ? (
+                <Form>
+                  <FormControl
+                    className="Search"
+                    type="text"
+                    id="search"
+                    placeholder="Search here"
+                    onChange={(e) => {
+                      setsearch(e.target.value);
+                    }}
+                  />
+                </Form>
+              ) : null}
             </div>
-           
-            <Button
-              className="buttonPages"
-              variant="outline-primary"
-              onClick={(e) =>
-                setCurrentPage(currentPage > 0 ? currentPage - 1 : null)
-              }
-            >
-              Prev
-            </Button>
+
+            {pages < 2 ? null : (
+              <Button
+                className="buttonPages"
+                variant="outline-primary"
+                onClick={(e) =>
+                  setCurrentPage(currentPage > 0 ? currentPage - 1 : null)
+                }
+              >
+                Prev
+              </Button>
+            )}
             {Array.from(Array(pages), (item, index) => {
               return (
                 <Button
@@ -94,9 +106,7 @@ export default function HomePage() {
               className="buttonPages"
               variant="outline-primary"
               onClick={(e) =>
-                setCurrentPage(
-                  digimons.length < itensPerPage ? 0 : currentPage + 1
-                )
+                setCurrentPage(isLastPage ? currentPage : currentPage + 1)
               }
             >
               Next

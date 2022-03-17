@@ -32,6 +32,8 @@ export default function FreshPage() {
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const digimons = digimon.slice(startIndex, endIndex);
+  const isLastPage = digimons.length !== itensPerPage || endIndex === digimon.length;
+
 
   useEffect(() => {
     if (digimon.length) {
@@ -70,15 +72,17 @@ export default function FreshPage() {
             ) : null}
             </div>
            
-            <Button
-              className="buttonPages"
-              variant="outline-primary"
-              onClick={(e) =>
-                setCurrentPage(currentPage > 0 ? currentPage - 1 : null)
-              }
-            >
-              Prev
-            </Button>
+            {pages < 2 ? null : (
+              <Button
+                className="buttonPages"
+                variant="outline-primary"
+                onClick={(e) =>
+                  setCurrentPage(currentPage > 0 ? currentPage - 1 : null)
+                }
+              >
+                Prev
+              </Button>
+            )}
             {Array.from(Array(pages), (item, index) => {
               return (
                 <Button
@@ -91,17 +95,17 @@ export default function FreshPage() {
                 </Button>
               );
             })}
-            <Button
-              className="buttonPages"
-              variant="outline-primary"
-              onClick={(e) =>
-                setCurrentPage(
-                  digimons.length < itensPerPage ? 0 : currentPage + 1
-                )
-              }
-            >
-              Next
-            </Button>
+            {pages < 2 ? null : (
+              <Button
+                className="buttonPages"
+                variant="outline-primary"
+                onClick={(e) =>
+                  setCurrentPage(isLastPage ? currentPage : currentPage + 1)
+                }
+              >
+                Next
+              </Button>
+            )}
           </div>
          
           {digimons.map((card) => (

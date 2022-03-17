@@ -31,6 +31,8 @@ export default function ChampionsPage() {
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const digimons = digimon.slice(startIndex, endIndex);
+  const isLastPage = digimons.length !== itensPerPage || endIndex === digimon.length;
+
 
   useEffect(() => {
     if (digimon.length) {
@@ -60,7 +62,7 @@ export default function ChampionsPage() {
                 className="Search"
                 type="text"
                 id="search"
-                placeholder="Search digimon here"
+                placeholder="Search here"
                 onChange={(e) => {
                   setsearch(e.target.value);
                 }}
@@ -69,15 +71,17 @@ export default function ChampionsPage() {
             ) : null}
             </div>
            
-            <Button
-              className="buttonPages"
-              variant="outline-primary"
-              onClick={(e) =>
-                setCurrentPage(currentPage > 0 ? currentPage - 1 : null)
-              }
-            >
-              Prev
-            </Button>
+            {pages < 2 ? null : (
+              <Button
+                className="buttonPages"
+                variant="outline-primary"
+                onClick={(e) =>
+                  setCurrentPage(currentPage > 0 ? currentPage - 1 : null)
+                }
+              >
+                Prev
+              </Button>
+            )}
             {Array.from(Array(pages), (item, index) => {
               return (
                 <Button
@@ -90,17 +94,17 @@ export default function ChampionsPage() {
                 </Button>
               );
             })}
-            <Button
-              className="buttonPages"
-              variant="outline-primary"
-              onClick={(e) =>
-                setCurrentPage(
-                  digimons.length < itensPerPage ? 0 : currentPage + 1
-                )
-              }
-            >
-              Next
-            </Button>
+            {pages < 2 ? null : (
+              <Button
+                className="buttonPages"
+                variant="outline-primary"
+                onClick={(e) =>
+                  setCurrentPage(isLastPage ? currentPage : currentPage + 1)
+                }
+              >
+                Next
+              </Button>
+            )}
           </div>
           {digimons.map((card) => (
             <Col sm={3}>
