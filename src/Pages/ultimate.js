@@ -41,7 +41,6 @@ export default function FreshPage() {
     }
    }, [digimon.length]);
 
-  const [show, setShow] = useState(false);
 
   return (
     <>
@@ -52,24 +51,23 @@ export default function FreshPage() {
           {/*Toggle search box, checks if its true or false*/}
             <Button
               className="buttonSearch"
-              onClick={() => setShow((prevCheck) => !prevCheck)}
             >
               <SearchIcon />
             </Button>
             <div className="searchbar">
-            {show ? (
+            
               <Form>
               <FormControl
                 className="Search"
                 type="text"
                 id="search"
-                placeholder="Search digimon here"
+                placeholder="Search digimon"
                 onChange={(e) => {
                   setsearch(e.target.value);
                 }}
               />
               </Form>
-            ) : null}
+            
             </div>
            
             {pages < 2 ? null : (

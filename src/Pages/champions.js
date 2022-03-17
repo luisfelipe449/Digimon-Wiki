@@ -40,7 +40,7 @@ export default function ChampionsPage() {
     }
   }, [digimon.length]);
 
-  const [show, setShow] = useState(false);
+  //const [show, setShow] = useState(false);
 
   return (
     <>
@@ -48,27 +48,26 @@ export default function ChampionsPage() {
         <Row>
           <h1>Champion</h1>
           <div className="pagination">
-          {/*Toggle search box, checks if its true or false*/}
+          {/*Toggle search box, checks if its true or false, use: onClick={() => setShow((prevCheck) => !prevCheck)}*/}
             <Button
               className="buttonSearch"
-              onClick={() => setShow((prevCheck) => !prevCheck)}
             >
               <SearchIcon />
             </Button>
             <div className="searchbar">
-            {show ? (
+            
               <Form>
               <FormControl
                 className="Search"
                 type="text"
                 id="search"
-                placeholder="Search here"
+                placeholder="Search digimon"
                 onChange={(e) => {
                   setsearch(e.target.value);
                 }}
               />
               </Form>
-            ) : null}
+            
             </div>
            
             {pages < 2 ? null : (

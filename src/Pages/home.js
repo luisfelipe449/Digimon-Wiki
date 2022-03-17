@@ -48,7 +48,6 @@ export default function HomePage() {
     }
   }, [digimon.length]);
 
-  const [show, setShow] = useState(false);
 
   return (
     <>
@@ -56,10 +55,9 @@ export default function HomePage() {
         <Row>
           <h1>Digimons</h1>
           <div className="pagination">
-            {/*Toggle search box, checks if its true or false*/}
+            {/*Toggle search box, checks if its true or false use: onClick={() => setShow((prevCheck) => !prevCheck)}*/}
             <Button
               className="buttonSearch"
-              onClick={() => setShow((prevCheck) => !prevCheck)}
             >
               <SearchIcon />
             </Button>
@@ -70,7 +68,7 @@ export default function HomePage() {
                     className="Search"
                     type="text"
                     id="search"
-                    placeholder="Search here"
+                    placeholder="Search digimon"
                     onChange={(e) => {
                       setsearch(e.target.value);
                     }}
