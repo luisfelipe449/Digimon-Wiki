@@ -2,7 +2,8 @@ import React from "react";
 import "./App.css";
 
 import Rotas from "./Routes/rotas";
-import NavBar from "./components/NavBar";
+import PageStructure from "./components/PageStructure";
+import Footer from "./components/Footer";
 
 export default function App() {
 
@@ -10,8 +11,9 @@ export default function App() {
 
   return (
     <>
-      <NavBar />
+      <PageStructure />
       <Rotas />
+      <Footer />
     </>
   );
 }

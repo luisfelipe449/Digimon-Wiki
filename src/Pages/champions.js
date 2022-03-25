@@ -5,7 +5,7 @@ import { Row, Container, Col, Card, Button, Form, FormControl } from "react-boot
 import { arr } from "../Services/levelChampion";
 import SearchIcon from "@mui/icons-material/Search";
 
-export default function ChampionsPage() {
+const ChampionsPage = () => {
   const [search, setsearch] = useState("");
   const [digimon, setdigimon] = useState(arr);
 
@@ -121,4 +121,6 @@ export default function ChampionsPage() {
       </Container>
     </>
   );
+
 }
+export default ChampionsPage;
