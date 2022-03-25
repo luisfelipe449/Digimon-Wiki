@@ -20,7 +20,7 @@ input{
 @media only screen and (max-width: 1024px) {
 
   input{
-    max-width: 8rem;
+    max-width: 8.5rem;
   }
 
   a.nav-link{
